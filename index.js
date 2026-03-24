@@ -8,12 +8,20 @@ import { Server } from "socket.io";
 import authRoutes from "./routes/auth.js";
 import roomRoutes from "./routes/room.js";
 import messageRoutes from "./routes/messages.js";
+import { setServers } from "node:dns/promises";
+
+setServers(["1.1.1.1", "8.8.8.8"]);
 
 dotenv.config();
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(
+  cors({
+    origin: "https://mern-chat-app-chi-nine.vercel.app",
+    credentials: true,
+  })
+);
 
+app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/rooms", roomRoutes);
@@ -21,7 +29,7 @@ app.use("/api/messages", messageRoutes);
 
 // Socket.IO
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
+const io = new Server(server, { cors: { origin: "*", } });
 
 io.on("connection", (socket) => {
   console.log("User connected: ", socket.id);
