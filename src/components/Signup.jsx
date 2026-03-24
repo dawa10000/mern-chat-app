@@ -9,7 +9,7 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", { username, password });
+      const res = await axios.post("https://mern-chat-app-dhl9.onrender.com/api/auth/signup", { username, password });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.user.id);
       localStorage.setItem("username", res.data.user.username);

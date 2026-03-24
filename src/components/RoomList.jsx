@@ -15,7 +15,7 @@ function RoomList() {
 
   const fetchRooms = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/rooms");
+      const res = await axios.get("https://mern-chat-app-dhl9.onrender.com/api/rooms");
       setRooms(res.data);
     } catch (err) {
       console.log(err);
@@ -25,7 +25,7 @@ function RoomList() {
   const handleCreateRoom = async () => {
     if (!roomName) return alert("Enter a room name");
     try {
-      await axios.post("http://localhost:5000/api/rooms", { name: roomName, userId });
+      await axios.post("https://mern-chat-app-dhl9.onrender.com/rooms", { name: roomName, userId });
       setRoomName("");
       fetchRooms();
     } catch (err) {

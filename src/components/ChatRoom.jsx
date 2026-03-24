@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://mern-chat-app-dhl9.onrender.com");
 
 function ChatRoom() {
   const { roomId } = useParams();
@@ -19,7 +19,7 @@ function ChatRoom() {
   }, [roomId]);
 
   const fetchMessages = async () => {
-    const res = await axios.get(`http://localhost:5000/api/messages/${roomId}`);
+    const res = await axios.get(`https://mern-chat-app-dhl9.onrender.com/api/messages/${roomId}`);
     setMessages(res.data);
   };
 
@@ -50,7 +50,7 @@ function ChatRoom() {
       createdAt: new Date(),
     };
 
-    await axios.post("http://localhost:5000/api/messages", {
+    await axios.post("https://mern-chat-app-dhl9.onrender.com/api/messages", {
       sender: userId,
       roomId,
       text,
@@ -80,8 +80,8 @@ function ChatRoom() {
             <div className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
               <div
                 className={`max-w-xs px-4 py-3 rounded-2xl shadow break-words relative ${isMe
-                    ? "bg-gradient-to-br from-blue-400 to-blue-600 text-white"
-                    : "bg-gradient-to-br from-pink-300 to-pink-500 text-white"
+                  ? "bg-gradient-to-br from-blue-400 to-blue-600 text-white"
+                  : "bg-gradient-to-br from-pink-300 to-pink-500 text-white"
                   }`}
               >
                 <div className="font-semibold mb-1">
