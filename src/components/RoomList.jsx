@@ -40,7 +40,7 @@ function RoomList() {
   const handleLogout = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   return (

@@ -15,8 +15,20 @@ function ChatRoom() {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      navigate("/", { replace: true });
+    }
+  }, []);
+
+  useEffect(() => {
     fetchMessages();
   }, [roomId]);
+
+
+
+
 
   const fetchMessages = async () => {
     const res = await axios.get(`https://mern-chat-app-dhl9.onrender.com/api/messages/${roomId}`);
