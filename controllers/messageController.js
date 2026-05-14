@@ -1,13 +1,13 @@
 import Message from "../models/Message.js";
 
-// ✅ Get all messages (sorted + populated)
+
 export const getMessages = async (req, res) => {
   try {
     const { roomId } = req.params;
 
     const messages = await Message.find({ roomId })
       .populate("sender", "username")
-      .sort({ createdAt: 1 }); // 👈 important
+      .sort({ createdAt: 1 }); 
 
     res.json(messages);
   } catch (err) {
@@ -15,7 +15,7 @@ export const getMessages = async (req, res) => {
   }
 };
 
-// ✅ Create message
+
 export const createMessage = async (req, res) => {
   try {
     const { sender, roomId, text } = req.body;
@@ -26,7 +26,6 @@ export const createMessage = async (req, res) => {
       text,
     });
 
-    // 👇 return populated message (VERY IMPORTANT)
     const populatedMessage = await message.populate("sender", "username");
 
     res.json(populatedMessage);
