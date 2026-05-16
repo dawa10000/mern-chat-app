@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 const loginSchema = Yup.object().shape({
   username: Yup.string().required("Username is required."),
-  password: Yup.string().required("Password is required."),
+  password: Yup.string().min(8, "Password must be 8 characters long").required("Password is required."),
 });
 
 function Login() {
