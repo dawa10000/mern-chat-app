@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import * as Yup from "yup";
+
+const loginSchema = Yup.object().shape({
+  username: Yup.string().required("Username is required."),
+  password: Yup.string().required("Password is required."),
+});
 
 function Login() {
   const [username, setUsername] = useState("");
